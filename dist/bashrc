@@ -8,7 +8,7 @@ HISTFILESIZE=200000
 alias gg='git grep -n'
 alias gp='git push'
 alias smd='pwd > $HOME/.config/cm-maindir'
-alias cm='cd $(< $HOME/.config/cm-maindir) && pwd'
+alias cm='cd "$( < "$HOME/.config/cm-maindir" )"; pwd'
 alias cg='cd $(git rev-parse --show-toplevel)' # https://blogboard.io/blog/knowledge/cd-to-git-root/
 alias cs="cd ~/src"
 alias py="python"
@@ -20,14 +20,17 @@ export PATH=$PATH:$HOME/local/usr/bin
 export PATH=$PATH:$HOME/.local/usr/bin
 export PATH=$PATH:$HOME/.local/bin
 function lsi {
+    local dir
+
     if [ -f ".index" ]; then
-        dir=$(fzf --accept-nth 1 < .index)
+        dir=$(fzf --accept-nth=1 < .index)
     else
         dir=$(fzf --walker=dir)
     fi
-    if [ ! -z $dir ]; then
-        if [ -d $dir ]; then
-            cd $dir
+
+    if [ -n "$dir" ]; then
+        if [ -d "$dir" ]; then
+            cd -- "$dir" || return
             pwd
         fi
     fi
@@ -53,3 +56,6 @@ export PAGER="less -S"
 
 # CMake.
 export CPM_SOURCE_CACHE=$HOME/.cpm_cache
+
+# Zoxide
+eval "$(zoxide init bash)"
