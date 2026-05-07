@@ -33,7 +33,7 @@ append_if_missing()
 xargs -a APT_PACKAGES sudo apt-get install -y
 
 # Vim.
-if [ ! -L "$HOME/.vimrc" ] || [ "$(readlink "$HOME/.vimrc" 2>/dev/null || true)" != "$DOTFILES/vimrc" ]; then
+if [ ! -L "$HOME/.vimrc" ]; then
     backup_file "$HOME/.vimrc"
     ln -s "$DOTFILES/vimrc" "$HOME/.vimrc"
 fi
@@ -44,6 +44,12 @@ if [ ! -f $HOME/.vim/autoload/plug.vim ]; then
   mkdir -p $HOME/.vim/autoload
   curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# Tig
+if [ ! -L "$HOME/.tigrc" ]; then
+    backup_file "$HOME/.tigrc"
+    ln -s "$DOTFILES/tigrc" "$HOME/.tigrc"
 fi
 
 # Bash.
