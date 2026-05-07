@@ -20,6 +20,7 @@ octave
 octave-control
 octave-signal
 plocate
+python3-venv
 screen
 silversearcher-ag
 sqlite3
