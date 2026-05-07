@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eu
+
+sudo ansible-playbook \
+    -c local \
+    -i ansible/inventory.ini \
+    ansible/system.yml
+
+ansible-playbook \
+    -i ansible/inventory.ini \
+    ansible/user.yml

@@ -1,0 +1,78 @@
+---
+- name: Configure user-level dotfiles and preferences.
+  hosts: localhost
+  connection: local
+  become: false
+
+  vars:
+    user_home: "{{ ansible_facts['env']['HOME'] }}"
+    dotfiles_root: "{{ playbook_dir }}/.."
+    dotfiles_dist: "{{ dotfiles_root }}/dist"
+
+  tasks:
+    - name: Link vimrc.
+      ansible.builtin.file:
+        src: "{{ dotfiles_dist }}/vimrc"
+        dest: "{{ user_home }}/.vimrc"
+        state: link
+        force: true
+
+    - name: Ensure Vim autoload directory exists.
+      ansible.builtin.file:
+        path: "{{ user_home }}/.vim/autoload"
+        state: directory
+        mode: "0755"
+
+    - name: Install vim-plug.
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ user_home }}/.vim/autoload/plug.vim"
+        mode: "0644"
+
+    - name: Link tigrc.
+      ansible.builtin.file:
+        src: "{{ dotfiles_dist }}/tigrc"
+        dest: "{{ user_home }}/.tigrc"
+        state: link
+        force: true
+
+    - name: Source custom Bash configuration.
+      ansible.builtin.blockinfile:
+        path: "{{ user_home }}/.bash_aliases"
+        create: true
+        marker: "# {mark} DAMO BASHRC"
+        block: |
+          DAMO_BASHRC={{ dotfiles_dist }}/bashrc
+          if [ -f "$DAMO_BASHRC" ]; then
+              source "$DAMO_BASHRC"
+          fi
+        mode: "0644"
+
+    - name: Ensure SSH directory exists.
+      ansible.builtin.file:
+        path: "{{ user_home }}/.ssh"
+        state: directory
+        mode: "0700"
+
+    - name: Include custom SSH configuration.
+      ansible.builtin.lineinfile:
+        path: "{{ user_home }}/.ssh/config"
+        create: true
+        line: "Include {{ dotfiles_dist }}/ssh_config"
+        mode: "0600"
+
+    - name: Ensure SSH control-master directory exists.
+      ansible.builtin.file:
+        path: "{{ user_home }}/.ssh/_ctrlmasters"
+        state: directory
+        mode: "0700"
+
+    - name: Enable middle-click primary paste.
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+      changed_when: false
+
+    - name: Disable GNOME logout prompt.
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.SessionManager logout-prompt false
+      changed_when: false

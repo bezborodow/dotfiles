@@ -1,0 +1,24 @@
+---
+- name: Configure system-level workstation settings.
+  hosts: localhost
+  connection: local
+  become: true
+
+  vars:
+    dotfiles_root: "{{ playbook_dir }}/.."
+    dotfiles_dist: "{{ dotfiles_root }}/dist"
+
+  tasks:
+    - name: Install apt packages from dist/APT_PACKAGES.
+      ansible.builtin.apt:
+        name: "{{ lookup('file', dotfiles_dist + '/APT_PACKAGES').splitlines()
+                  | reject('match', '^\\s*$')
+                  | reject('match', '^\\s*#')
+                  | list }}"
+        state: present
+        update_cache: true
+
+    - name: Set default editor to Vim.
+      ansible.builtin.command:
+        cmd: update-alternatives --set editor /usr/bin/vim.basic
+      changed_when: false
