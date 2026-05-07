@@ -1,0 +1,70 @@
+#!/bin/sh
+set -eu
+
+DOTFILES="$HOME/src/dotfiles"
+
+backup_file()
+{
+    path="$1"
+
+    if [ -e "$path" ] || [ -L "$path" ]; then
+        mv "$path" "$path.old"
+    fi
+}
+
+append_if_missing()
+{
+    file="$1"
+    needle="$2"
+    text="$3"
+
+    mkdir -p "$(dirname "$file")"
+    touch "$file"
+
+    if ! grep -Fq "$needle" "$file"; then
+        {
+            printf '\n'
+            printf '%s\n' "$text"
+        } >> "$file"
+    fi
+}
+
+# Apt packages.
+xargs -a APT_PACKAGES sudo apt-get install -y
+
+# Vim.
+if [ ! -L "$HOME/.vimrc" ] || [ "$(readlink "$HOME/.vimrc" 2>/dev/null || true)" != "$DOTFILES/vimrc" ]; then
+    backup_file "$HOME/.vimrc"
+    ln -s "$DOTFILES/vimrc" "$HOME/.vimrc"
+fi
+
+# Vim plugins.
+if [ ! -f $HOME/.vim/autoload/plug.vim ]; then
+  mkdir -p $HOME/.vim/autoload
+  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# Bash.
+append_if_missing \
+    "$HOME/.bash_aliases" \
+    "DAMO_BASHRC=$DOTFILES/bashrc" \
+"DAMO_BASHRC=$DOTFILES/bashrc
+if [ -f \"\$DAMO_BASHRC\" ]; then
+    source \"\$DAMO_BASHRC\"
+fi"
+
+# SSH.
+append_if_missing \
+    "$HOME/.ssh/config" \
+    "Include $DOTFILES/ssh_config" \
+"Include $DOTFILES/ssh_config"
+
+mkdir -p $HOME/.ssh/_ctrlmasters
+chmod 700 "$HOME/.ssh/_ctrlmasters"
+chmod 700 "$HOME/.ssh"
+chmod 600 "$HOME/.ssh/config"
+
+# GNOME preferences.
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+gsettings set org.gnome.SessionManager logout-prompt false
