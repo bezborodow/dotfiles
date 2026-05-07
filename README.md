@@ -1,4 +1,4 @@
-Vim
+`.bash_aliases`:
 
 ```
 CUSTOM_BASHRC=~/src/dotfiles/bashrc
