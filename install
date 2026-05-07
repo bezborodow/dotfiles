@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -eu
+source ansible/installer.sh
+
+banner "SYSTEM CHANGES"
 
 sudo ansible-playbook \
     -c local \
     -i ansible/inventory.ini \
     ansible/system.yml
 
-ansible-playbook \
-    -i ansible/inventory.ini \
-    ansible/user.yml
+./install_user
