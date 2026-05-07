@@ -8,7 +8,7 @@ git clone https://github.com/bezborodow/dotfiles.git
 ./install
 ```
 
-Thereafter:
+Thereafter, if only updating the user:
 
 ```
 ./install_user
