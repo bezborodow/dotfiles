@@ -1,0 +1,8 @@
+hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%l %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+termcapinfo xterm* ti@:te@
+
+# Don't retain output after quitting vim/less/etc.
+altscreen on
+
+# More scrollback.
+scrollback 100000

@@ -29,6 +29,13 @@
         dest: "{{ user_home }}/.vim/autoload/plug.vim"
         mode: "0644"
 
+    - name: Link screenrc.
+      ansible.builtin.file:
+        src: "{{ dotfiles_dist }}/screenrc"
+        dest: "{{ user_home }}/.screenrc"
+        state: link
+        force: true
+
     - name: Link tigrc.
       ansible.builtin.file:
         src: "{{ dotfiles_dist }}/tigrc"
