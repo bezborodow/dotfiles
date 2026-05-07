@@ -37,6 +37,7 @@ if [ ! -L "$HOME/.vimrc" ] || [ "$(readlink "$HOME/.vimrc" 2>/dev/null || true)"
     backup_file "$HOME/.vimrc"
     ln -s "$DOTFILES/vimrc" "$HOME/.vimrc"
 fi
+sudo update-alternatives --set editor /usr/bin/vim.basic
 
 # Vim plugins.
 if [ ! -f $HOME/.vim/autoload/plug.vim ]; then
