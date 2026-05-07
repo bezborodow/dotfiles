@@ -22,7 +22,7 @@ octave-signal
 plocate
 screen
 silversearcher-ag
-sqlite
+sqlite3
 tcl
 tcl-dev
 tcpdump
