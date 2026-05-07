@@ -2,8 +2,7 @@
 export EDITOR=vim
 
 # Bash.
-PS1="\e[0;36m\]\h \`if [ \$? = 0 ]; then echo '\e[01;32m\]\w\e[00m\]\$ '; else echo '\e[01;31m\]\w\e[00m\]\$ '; fi\`"
-# PS1="\e[0;46m\]\h\e[00m\] \`if [ \$? = 0 ]; then echo '\e[01;32m\]\w\e[00m\]\$ '; else echo '\e[01;31m\]\w\e[00m\]\$ '; fi\`";
+PS1='\[$(if [ "$?" -eq 0 ]; then printf "\033[37m"; else printf "\033[31m"; fi)\]$\[\033[0m\] '
 HISTSIZE=10000
 HISTFILESIZE=200000
 alias gg='git grep -n'
@@ -40,7 +39,6 @@ export PATH=$PATH:/opt/Xilinx/Vivado/2024.2/bin/
 # Python.
 export PYTHONPYCACHEPREFIX=/tmp/pycache
 alias python=python3
-PS1='\\$ '
 function venv {
   dir=~/.pyenv
   if [ ! -d "$dir" ]; then
