@@ -41,13 +41,14 @@ export PATH=$PATH:/opt/Xilinx/Vivado/2024.2/bin/
 
 # Python.
 export PYTHONPYCACHEPREFIX=/tmp/pycache
-alias python=python3
 function venv {
-  dir=~/.pyenv
-  if [ ! -d "$dir" ]; then
-    mkdir -p $dir
-    /usr/bin/env python3 -m venv $dir
+  local dir="$HOME/.pyenv"
+
+  if [ ! -e "$dir/bin/activate" ]; then
+    rm -rf -- "$dir"
+    /usr/bin/env python3 -m venv "$dir" || return
   fi
+
   source "$dir/bin/activate"
 }
 

@@ -13,6 +13,7 @@ gitk
 gnome
 gnome-session
 gparted
+libboost-dev-all
 make
 meld
 meson
@@ -20,7 +21,9 @@ octave
 octave-control
 octave-signal
 plocate
+python-is-python3
 python3-venv
+qtbase5-dev
 screen
 silversearcher-ag
 sqlite3
