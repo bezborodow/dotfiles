@@ -27,6 +27,7 @@ qtbase5-dev
 screen
 silversearcher-ag
 sqlite3
+systemd-coredump
 tcl
 tcl-dev
 tcpdump
