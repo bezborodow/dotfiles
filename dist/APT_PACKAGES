@@ -13,7 +13,7 @@ gitk
 gnome
 gnome-session
 gparted
-libboost-dev-all
+libboost-all-dev
 make
 meld
 meson
