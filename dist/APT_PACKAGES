@@ -13,6 +13,7 @@ gitk
 gnome
 gnome-session
 gparted
+gtkwave
 libboost-all-dev
 make
 meld
