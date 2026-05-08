@@ -29,3 +29,9 @@
       ansible.builtin.command:
         cmd: update-alternatives --set editor /usr/bin/vim.basic
       changed_when: false
+
+    - name: Ensure root vimrc exists.
+      ansible.builtin.file:
+        path: /root/.vimrc
+        state: touch
+        mode: "0644"
