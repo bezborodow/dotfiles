@@ -18,6 +18,13 @@
         state: present
         update_cache: true
 
+    - name: Remove Ubuntu Pro client.
+      ansible.builtin.apt:
+        name: ubuntu-pro-client
+        state: absent
+        purge: true
+        autoremove: true
+
     - name: Set default editor to Vim.
       ansible.builtin.command:
         cmd: update-alternatives --set editor /usr/bin/vim.basic
