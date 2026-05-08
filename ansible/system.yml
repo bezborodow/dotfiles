@@ -31,7 +31,8 @@
       changed_when: false
 
     - name: Ensure root vimrc exists.
-      ansible.builtin.file:
-        path: /root/.vimrc
-        state: touch
+      ansible.builtin.copy:
+        content: ""
+        dest: /root/.vimrc
+        force: false
         mode: "0644"
