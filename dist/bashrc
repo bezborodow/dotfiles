@@ -83,5 +83,19 @@ export PAGER="less -S"
 # CMake.
 export CPM_SOURCE_CACHE=$HOME/.cpm_cache
 
-# Zoxide
+# Zoxide.
 eval "$(zoxide init bash)"
+
+
+# WSL.
+if [ -n "$WSL_DISTRO_NAME" ]; then
+
+    # Go to Windows path under /mnt.
+    # Usage: cdw 'C:\WINDOWS'
+    cdw() {
+        cd - "$(wslpath "$1")"
+    }
+
+    # Open current directory in Windows.
+    alias open="wslview"
+fi
