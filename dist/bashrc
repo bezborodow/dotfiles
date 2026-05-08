@@ -7,8 +7,6 @@ HISTSIZE=10000
 HISTFILESIZE=200000
 alias gg='git grep -n'
 alias gp='git push'
-alias smd='pwd > $HOME/.config/cm-maindir'
-alias cm='cd "$( < "$HOME/.config/cm-maindir" )"; pwd'
 alias cg='cd $(git rev-parse --show-toplevel)' # https://blogboard.io/blog/knowledge/cd-to-git-root/
 alias cs="cd ~/src"
 alias py="python"
@@ -17,6 +15,9 @@ export LD_LIBRARY_PATH=$HOME/local/usr/lib/
 export PATH=$PATH:$HOME/local/usr/bin
 export PATH=$PATH:$HOME/.local/usr/bin
 export PATH=$PATH:$HOME/.local/bin
+
+# lsi: List directory interactively.
+# Will use an optional .index file if present.
 function lsi {
     local dir
 
@@ -32,6 +33,32 @@ function lsi {
             pwd
         fi
     fi
+}
+
+# smd: Set main working directory.
+alias smd='pwd > $HOME/.config/cm-maindir'
+
+# cm: Change to main working directory.
+cm()
+{
+    local file="$HOME/.config/cm-maindir"
+
+    if [ -r "$file" ]; then
+        cd -- "$( < "$file" )" || cd
+    else
+        cd
+    fi
+
+    pwd
+}
+
+# gbr: Git branch interactively.
+gbr() {
+    git switch "$(
+        git branch | \
+        fzf | \
+        sed 's/^[* ]*//'
+    )"
 }
 
 # Vivado.
