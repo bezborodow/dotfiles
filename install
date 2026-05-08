@@ -2,6 +2,8 @@
 set -eu
 source ansible/installer.sh
 
+sudo --validate
+
 banner "SYSTEM CHANGES"
 
 sudo ansible-playbook \

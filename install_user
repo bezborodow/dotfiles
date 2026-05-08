@@ -3,6 +3,7 @@ set -eu
 source ansible/installer.sh
 
 banner "USER CHANGES"
+
 ansible-playbook \
     -i ansible/inventory.ini \
     ansible/user.yml
