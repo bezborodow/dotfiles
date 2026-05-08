@@ -17,7 +17,9 @@ gparted
 gtkwave
 libboost-all-dev
 libc++-dev
+libzstd-dev
 llvm
+llvm-dev
 make
 meld
 meson
@@ -43,4 +45,5 @@ universal-ctags
 vim
 wireshark
 xournal
+zlib1g-dev
 zoxide
