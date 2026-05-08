@@ -10,11 +10,14 @@ g++
 gdb
 git
 gitk
+gnat
 gnome
 gnome-session
 gparted
 gtkwave
 libboost-all-dev
+libc++-dev
+llvm
 make
 meld
 meson
