@@ -33,8 +33,8 @@ preferences, then do only:
 
 ## Customisation
 
-This repository can be copied as a basis for your own.  It is a very simple
-setup, but a basic understanding of Ansible will be useful.
+This is a very simple setup, but a basic understanding of Ansible will be
+useful.
 
  1. `ansible/`: Ansible configuration.
  2. `dist/`: Resources to be installed such as RC files (e.g., dotfiles such as
