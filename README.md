@@ -10,6 +10,7 @@ script is to be run locally on each machine.
 This repository contains a user and system configuration according to my own
 preferences, but may be copied and used as a basis for your own.
 
+Current base operating system: **Ubuntu 26.04 LTS**
 
 ## Usage
 
