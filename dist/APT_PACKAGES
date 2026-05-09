@@ -25,6 +25,8 @@ llvm-dev
 make
 meld
 meson
+meson
+ninja-build
 octave
 octave-control
 octave-signal
