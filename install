@@ -12,12 +12,22 @@ if [ "$#" -eq 0 ]; then
 fi
 
 # Check options.
-while getopts "su" opt; do
-    case "$opt" in
-        s) RUN_SYSTEM=1 ;;
-        u) RUN_USER=1 ;;
-        *) exit 1 ;;
-    esac
+while getopts "suh" opt; do
+  case "$opt" in
+    s) RUN_SYSTEM=1 ;;
+    u) RUN_USER=1 ;;
+    h)
+      echo "Usage: $0 [-s] [-u]"
+      echo "  no args  -> system + user"
+      echo "  -s       -> system only"
+      echo "  -u       -> user only"
+      echo "  -h       -> help"
+      exit 0
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
 done
 
 if [ "$RUN_SYSTEM" -eq 1 ]; then
