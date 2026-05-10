@@ -12,6 +12,11 @@ preferences, but may be copied and used as a basis for your own.
 
 Current base operating system: **Ubuntu 26.04 LTS**
 
+WARNING: THIS WILL OVERRIDE EXISTING FILES AND CONFIGURATION.
+
+THIS SOFTWARE IS PROVIDED WITHOUT WARRANTY OR IMPLIED FITNESS FOR A
+PARTICULAR PURPOSE.
+
 ## Usage
 
 User and system preferences:
