@@ -11,7 +11,7 @@ alias cg='cd $(git rev-parse --show-toplevel)' # https://blogboard.io/blog/knowl
 alias cs="cd ~/src"
 alias py="python"
 alias tree='tree --gitignore'
-alias ct='ctags -R --languages=C --c-kinds=+p --fields=+iaS --extras=+q .'
+alias ct='ctags -R --languages=C --c-kinds=+p --fields=+iaS --extras=+q'
 export LD_LIBRARY_PATH=$HOME/local/usr/lib/
 export PATH=$PATH:$HOME/local/usr/bin
 export PATH=$PATH:$HOME/.local/usr/bin
