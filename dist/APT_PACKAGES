@@ -16,6 +16,7 @@ gnome
 gnome-session
 gparted
 gtkwave
+lcov
 libboost-all-dev
 libc++-dev
 libstdc++-16-dev
