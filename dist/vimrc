@@ -20,7 +20,7 @@ autocmd FileType eruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 autocmd FileType vhdl setlocal tabstop=2 shiftwidth=2
 
-# Plugins.
+" Plugins.
 call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'lervag/vimtex'
@@ -28,7 +28,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-# Autoinstall plugins.
+" Autoinstall plugins.
 if empty(glob(expand('~/.vim/plugged/fzf.vim')))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -50,7 +50,7 @@ imap <F1> <Nop>
 set exrc
 set secure
 
-# Disable mouse intercepts.
+" Disable mouse intercepts.
 set mouse=
 
 " Colours.
