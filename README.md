@@ -29,7 +29,7 @@ Updating system configuration requires root sudo access. If just updating user
 preferences, then do only:
 
 ```
-./install_user
+./install -u
 ```
 
 ## Customisation
