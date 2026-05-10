@@ -5,18 +5,22 @@ set expandtab
 set autoindent
 set smartindent
 set ruler
-set backspace=indent,eol,start
 set hlsearch
 set nonumber
 
-filetype plugin indent on
+" Fix ctrl-W in insert mode not working.
+" https://stackoverflow.com/questions/7239954/ctrl-w-in-vim-dont-work-in-insert-mode-in-terminal/48636809#48636809
+set backspace=indent,eol,start
 
+" Indentation.
+filetype plugin indent on
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType eruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 autocmd FileType vhdl setlocal tabstop=2 shiftwidth=2
 
+# Plugins.
 call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'lervag/vimtex'
@@ -24,6 +28,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
+# Autoinstall plugins.
 if empty(glob(expand('~/.vim/plugged/fzf.vim')))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -44,5 +49,14 @@ imap <F1> <Nop>
 
 set exrc
 set secure
+
+# Disable mouse intercepts.
 set mouse=
+
+" Colours.
 colorscheme default
+
+" Fix highlighted words not being visible.
+hi Search    ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
+hi IncSearch ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
+hi Visual    ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
