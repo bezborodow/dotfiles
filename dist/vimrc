@@ -57,6 +57,7 @@ set mouse=
 colorscheme default
 
 " Fix highlighted words not being visible.
-hi Search    ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
-hi IncSearch ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
-hi Visual    ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
+hi Search    ctermbg=yellow ctermfg=black guibg=yellow guifg=black
+hi IncSearch ctermbg=yellow ctermfg=black guibg=yellow guifg=black
+hi Visual    ctermbg=yellow ctermfg=black guibg=yellow guifg=black
+hi SpellBad  ctermfg=black  ctermbg=red   guifg=black  guibg=red
