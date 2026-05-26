@@ -15,7 +15,9 @@ gnat
 gnome
 gnome-session
 gparted
+graphviz
 gtkwave
+imagemagick
 lcov
 libboost-all-dev
 libc++-dev
