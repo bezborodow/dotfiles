@@ -29,6 +29,19 @@
         dest: "{{ user_home }}/.vim/autoload/plug.vim"
         mode: "0644"
 
+    - name: Vim CoC settings.
+      ansible.builtin.file:
+        src: "{{ dotfiles_dist }}/vim/coc-settings.json"
+        dest: "{{ user_home }}/.vim/coc-settings.json"
+        state: link
+        force: true
+
+    - name: Vim after plugin highlights.
+      ansible.builtin.copy:
+        src: "{{ dotfiles_dist }}/vim/final.vim"
+        dest: "{{ user_home }}/.vim/final.vim"
+        force: true
+
     - name: Link screenrc.
       ansible.builtin.file:
         src: "{{ dotfiles_dist }}/screenrc"
@@ -41,6 +54,12 @@
         src: "{{ dotfiles_dist }}/tigrc"
         dest: "{{ user_home }}/.tigrc"
         state: link
+        force: true
+
+    - name: Git ignore.
+      ansible.builtin.copy:
+        src: "{{ dotfiles_dist }}/config/git/ignore"
+        dest: "{{ user_home }}/.config/git/ignore"
         force: true
 
     - name: Source custom Bash configuration.
