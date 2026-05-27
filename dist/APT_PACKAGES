@@ -1,6 +1,7 @@
 build-essential
 clang
 clang-format
+clangd
 cmake
 curl
 doxygen
@@ -17,6 +18,7 @@ gnome-session
 gparted
 graphviz
 gtkwave
+hx
 imagemagick
 lcov
 libboost-all-dev
