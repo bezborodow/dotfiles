@@ -37,9 +37,10 @@
         force: true
 
     - name: Vim after plugin highlights.
-      ansible.builtin.copy:
+      ansible.builtin.file:
         src: "{{ dotfiles_dist }}/vim/final.vim"
         dest: "{{ user_home }}/.vim/final.vim"
+        state: link
         force: true
 
     - name: Link screenrc.
