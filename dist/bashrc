@@ -17,6 +17,7 @@ export LD_LIBRARY_PATH=$HOME/local/usr/lib/
 export PATH=$PATH:$HOME/local/usr/bin
 export PATH=$PATH:$HOME/.local/usr/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 # lsi: List directory interactively.
 # Will use an optional .index file if present.
