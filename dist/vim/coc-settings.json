@@ -1,10 +1,3 @@
 {
-  "inlayHint.enable": false,
-  "languageserver": {
-    "vhdl": {
-      "command": "vhdl_ls",
-      "filetypes": ["vhdl"],
-      "rootPatterns": ["vhdl_ls.toml", ".git"]
-    }
-  }
+  "inlayHint.enable": false
 }
