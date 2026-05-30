@@ -36,3 +36,11 @@
         dest: /root/.vimrc
         force: false
         mode: "0644"
+
+    - name: Allow non-root users to read dmesg.
+      ansible.posix.sysctl:
+        name: kernel.dmesg_restrict
+        value: '0'
+        state: present
+        reload: true
+        sysctl_file: /etc/sysctl.d/10-dmesg-unrestricted.conf
