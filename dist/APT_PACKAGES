@@ -1,6 +1,7 @@
 build-essential
 clang
 clang-format
+clang-tidy
 clangd
 cmake
 curl
@@ -20,6 +21,7 @@ graphviz
 gtkwave
 hx
 imagemagick
+iwyu
 lcov
 libboost-all-dev
 libc++-dev
