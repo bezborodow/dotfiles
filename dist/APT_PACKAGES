@@ -41,6 +41,7 @@ plocate
 python-is-python3
 python3-venv
 qtbase5-dev
+ripgrep
 screen
 silversearcher-ag
 sqlite3
