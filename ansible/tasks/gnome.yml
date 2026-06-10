@@ -1,0 +1,24 @@
+---
+- name: Apply GNOME desktop settings.
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop:
+    - key: /org/gnome/desktop/interface/gtk-enable-primary-paste
+      value: "true"
+    - key: /org/gnome/SessionManager/logout-prompt
+      value: "false"
+    - key: /org/gnome/desktop/wm/keybindings/switch-windows
+      value: "['<Alt>Tab']"
+    - key: /org/gnome/desktop/wm/keybindings/switch-windows-backward
+      value: "['<Shift><Alt>Tab']"
+    - key: /org/gnome/desktop/wm/keybindings/switch-applications
+      value: "[]"
+    - key: /org/gnome/desktop/wm/keybindings/switch-applications-backward
+      value: "[]"
+    # GNOME's screenshot action saves directly; show-screenshot-ui opens the picker.
+    - key: /org/gnome/shell/keybindings/screenshot
+      value: "['<Super><Shift>s']"
+  loop_control:
+    label: "{{ item.key }}"

@@ -94,40 +94,5 @@
         state: directory
         mode: "0700"
 
-    - name: Enable middle-click primary paste.
-      ansible.builtin.command:
-        cmd: gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
-      changed_when: false
-
-    - name: Disable GNOME logout prompt.
-      ansible.builtin.command:
-        cmd: gsettings set org.gnome.SessionManager logout-prompt false
-      changed_when: false
-
-    - name: Bind Alt+Tab to switch windows.
-      ansible.builtin.command:
-        cmd: >
-          gsettings set org.gnome.desktop.wm.keybindings
-          switch-windows "['<Alt>Tab']"
-      changed_when: false
-
-    - name: Bind Shift+Alt+Tab to switch windows backward.
-      ansible.builtin.command:
-        cmd: >
-          gsettings set org.gnome.desktop.wm.keybindings
-          switch-windows-backward "['<Shift><Alt>Tab']"
-      changed_when: false
-
-    - name: Disable application switching shortcut.
-      ansible.builtin.command:
-        cmd: >
-          gsettings set org.gnome.desktop.wm.keybindings
-          switch-applications "[]"
-      changed_when: false
-
-    - name: Disable backward application switching shortcut.
-      ansible.builtin.command:
-        cmd: >
-          gsettings set org.gnome.desktop.wm.keybindings
-          switch-applications-backward "[]"
-      changed_when: false
+    - name: Configure GNOME preferences.
+      ansible.builtin.include_tasks: tasks/gnome.yml
