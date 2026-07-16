@@ -4,9 +4,14 @@
   connection: local
   become: true
 
+  roles:
+    - geerlingguy.nodejs
+
   vars:
     dotfiles_root: "{{ playbook_dir }}/.."
     dotfiles_dist: "{{ dotfiles_root }}/dist"
+    nodejs_install_npm_user: "{{ ansible_user_id }}"
+    nodejs_version: "26.x"
 
   tasks:
     - name: Install apt packages from dist/APT_PACKAGES.
@@ -44,3 +49,6 @@
         state: present
         reload: true
         sysctl_file: /etc/sysctl.d/10-dmesg-unrestricted.conf
+
+    - name: Install nvm and Node.js.
+      ansible.builtin.import_tasks: tasks/nvm.yml

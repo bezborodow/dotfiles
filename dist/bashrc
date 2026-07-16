@@ -119,3 +119,10 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
     # Open current directory in Windows.
     alias open="wslview"
 fi
+
+# Node.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# GPG.
+export GPG_TTY=$(tty)

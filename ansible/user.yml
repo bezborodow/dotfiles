@@ -94,5 +94,22 @@
         state: directory
         mode: "0700"
 
-    - name: Configure GNOME preferences.
-      ansible.builtin.include_tasks: tasks/gnome.yml
+#    - name: Configure GNOME preferences.
+#      ansible.builtin.include_tasks: tasks/gnome.yml
+
+    - name: Ensure GPG directory exists
+      ansible.builtin.file:
+        path: "{{ user_home }}/.gnupg"
+        state: directory
+        owner: "{{ ansible_facts['user_id'] }}"
+        group: "{{ ansible_facts['user_id'] }}"
+        mode: '0700'
+
+    - name: Configure GPG agent pinentry
+      ansible.builtin.copy:
+        dest: "{{ user_home }}/.gnupg/gpg-agent.conf"
+        content: |
+          pinentry-program /usr/bin/pinentry-curses
+        owner: "{{ ansible_facts['user_id'] }}"
+        group: "{{ ansible_facts['user_id'] }}"
+        mode: '0600'
