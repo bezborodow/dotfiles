@@ -97,6 +97,13 @@
 #    - name: Configure GNOME preferences.
 #      ansible.builtin.include_tasks: tasks/gnome.yml
 
+
+    - name: Ensure npm global directory exists.
+      ansible.builtin.file:
+        path: "{{ user_home }}/.npm-global"
+        state: directory
+        mode: "0755"
+
     - name: Ensure GPG directory exists
       ansible.builtin.file:
         path: "{{ user_home }}/.gnupg"
@@ -110,3 +117,5 @@
     - name: Restart gpg-agent
       ansible.builtin.command:
         cmd: gpgconf --kill gpg-agent
+
+        
