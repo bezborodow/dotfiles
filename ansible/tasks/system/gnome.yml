@@ -1,0 +1,14 @@
+---
+- name: Gather installed package facts for GNOME.
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Install GNOME packages from dist/APT_GNOME.
+  ansible.builtin.apt:
+    name: "{{ lookup('file', dotfiles_dist + '/APT_GNOME').splitlines()
+              | reject('match', '^\\s*$')
+              | reject('match', '^\\s*#')
+              | list }}"
+    state: present
+    update_cache: true
+  when: "'xserver-xorg-core' in ansible_facts.packages"

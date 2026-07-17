@@ -25,8 +25,23 @@
     - name: Configure SSH.
       ansible.builtin.import_tasks: tasks/user/ssh.yml
 
-#    - name: Configure GNOME preferences.
-#      ansible.builtin.include_tasks: tasks/gnome.yml
+    - name: Gather installed package facts.
+      ansible.builtin.package_facts:
+        manager: auto
+      tags:
+        - never
+        - gnome
+
+    - name: Configure GNOME preferences.
+      ansible.builtin.include_tasks:
+        file: tasks/gnome.yml
+        apply:
+          tags:
+            - gnome
+      when: "'xserver-xorg-core' in ansible_facts.packages"
+      tags:
+        - never
+        - gnome
 
 
     - name: Configure npm.

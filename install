@@ -20,23 +20,20 @@ banner()
 
 RUN_SYSTEM=0
 RUN_USER=0
-
-# No args, means assume run both user and system migrations.
-if [ "$#" -eq 0 ]; then
-    RUN_SYSTEM=1
-    RUN_USER=1
-fi
+RUN_GNOME=0
 
 # Check options.
-while getopts "suh" opt; do
+while getopts "sugh" opt; do
   case "$opt" in
     s) RUN_SYSTEM=1 ;;
     u) RUN_USER=1 ;;
+    g) RUN_GNOME=1 ;;
     h)
-      echo "Usage: $0 [-s] [-u]"
+      echo "Usage: $0 [-s] [-u] [-g]"
       echo "  no args  -> system + user"
       echo "  -s       -> system only"
       echo "  -u       -> user only"
+      echo "  -g       -> include opt-in GNOME tasks"
       echo "  -h       -> help"
       exit 0
       ;;
@@ -46,7 +43,18 @@ while getopts "suh" opt; do
   esac
 done
 
+# Without a system or user selector, run both playbooks.
+if [ "$RUN_SYSTEM" -eq 0 ] && [ "$RUN_USER" -eq 0 ]; then
+    RUN_SYSTEM=1
+    RUN_USER=1
+fi
+
 ansible-galaxy role install geerlingguy.nodejs -p ansible/roles/
+
+PLAYBOOK_ARGS=()
+if [ "$RUN_GNOME" -eq 1 ]; then
+    PLAYBOOK_ARGS+=(--tags all,gnome)
+fi
 
 # Run system playbook.
 if [ "$RUN_SYSTEM" -eq 1 ]; then
@@ -55,6 +63,7 @@ if [ "$RUN_SYSTEM" -eq 1 ]; then
     sudo ansible-playbook \
         -c local \
         -i ansible/inventory.ini \
+        "${PLAYBOOK_ARGS[@]}" \
         ansible/system.yml
 fi
 
@@ -63,5 +72,6 @@ if [ "$RUN_USER" -eq 1 ]; then
     banner "USER CHANGES"
     ansible-playbook \
         -i ansible/inventory.ini \
+        "${PLAYBOOK_ARGS[@]}" \
         ansible/user.yml
 fi

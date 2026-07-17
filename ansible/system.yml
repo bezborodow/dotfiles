@@ -17,6 +17,12 @@
     - name: Configure apt packages.
       ansible.builtin.import_tasks: tasks/system/packages.yml
 
+    - name: Install GNOME desktop packages.
+      ansible.builtin.import_tasks: tasks/system/gnome.yml
+      tags:
+        - never
+        - gnome
+
     - name: Configure Vim.
       ansible.builtin.import_tasks: tasks/system/vim.yml
 

@@ -30,6 +30,12 @@ cd dotfiles/
 ./install
 ```
 
+Include the opt-in GNOME packages and preferences on an X11 workstation:
+
+```
+./install -g
+```
+
 Updating system configuration requires root sudo access. If just updating user
 preferences, then do only:
 
