@@ -1,0 +1,10 @@
+[ERROR]: Task failed: Module failed: Destination directory /home/dbezborodov/.config/git does not exist
+Origin: /home/dbezborodov/src/dotfiles/ansible/user.yml:60:7
+
+58         force: true
+59
+60     - name: Git ignore.
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {"changed": false, "checksum": "87600914e67bc6ff8fb500a163b5c3279fae4b04", "msg": "Destination directory /home/dbezborodov/.config/git does not exist"}
+

@@ -46,6 +46,8 @@ while getopts "suh" opt; do
   esac
 done
 
+ansible-galaxy role install geerlingguy.nodejs -p ansible/roles/
+
 # Run system playbook.
 if [ "$RUN_SYSTEM" -eq 1 ]; then
     sudo --validate
