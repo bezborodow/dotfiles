@@ -1,0 +1,16 @@
+---
+- name: Install apt packages from dist/APT_PACKAGES.
+  ansible.builtin.apt:
+    name: "{{ lookup('file', dotfiles_dist + '/APT_PACKAGES').splitlines()
+              | reject('match', '^\\s*$')
+              | reject('match', '^\\s*#')
+              | list }}"
+    state: present
+    update_cache: true
+
+- name: Remove Ubuntu Pro client.
+  ansible.builtin.apt:
+    name: ubuntu-pro-client
+    state: absent
+    purge: true
+    autoremove: true

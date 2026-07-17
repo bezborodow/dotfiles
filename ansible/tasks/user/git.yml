@@ -1,0 +1,12 @@
+---
+- name: Ensure Git configuration directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.config/git"
+    state: directory
+    mode: "0755"
+
+- name: Install Git ignore configuration.
+  ansible.builtin.copy:
+    src: "{{ dotfiles_dist }}/config/git/ignore"
+    dest: "{{ user_home }}/.config/git/ignore"
+    force: true

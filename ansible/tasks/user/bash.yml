@@ -1,0 +1,12 @@
+---
+- name: Source custom Bash configuration.
+  ansible.builtin.blockinfile:
+    path: "{{ user_home }}/.bash_aliases"
+    create: true
+    marker: "# {mark} DAMO BASHRC"
+    block: |
+      DAMO_BASHRC={{ dotfiles_dist }}/bashrc
+      if [ -f "$DAMO_BASHRC" ]; then
+          source "$DAMO_BASHRC"
+      fi
+    mode: "0644"

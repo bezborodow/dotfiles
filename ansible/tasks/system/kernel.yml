@@ -1,0 +1,11 @@
+---
+- name: Allow non-root users to read dmesg.
+  ansible.builtin.copy:
+    content: "kernel.dmesg_restrict = 0\n"
+    dest: /etc/sysctl.d/10-dmesg-unrestricted.conf
+    mode: "0644"
+
+- name: Apply dmesg access setting.
+  ansible.builtin.command:
+    cmd: sysctl --load=/etc/sysctl.d/10-dmesg-unrestricted.conf
+  changed_when: false

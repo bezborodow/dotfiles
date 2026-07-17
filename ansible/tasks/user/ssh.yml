@@ -1,0 +1,19 @@
+---
+- name: Ensure SSH directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.ssh"
+    state: directory
+    mode: "0700"
+
+- name: Include custom SSH configuration.
+  ansible.builtin.lineinfile:
+    path: "{{ user_home }}/.ssh/config"
+    create: true
+    line: "Include {{ dotfiles_dist }}/ssh_config"
+    mode: "0600"
+
+- name: Ensure SSH control-master directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.ssh/_ctrlmasters"
+    state: directory
+    mode: "0700"

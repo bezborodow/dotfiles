@@ -10,112 +10,32 @@
     dotfiles_dist: "{{ dotfiles_root }}/dist"
 
   tasks:
-    - name: Link vimrc.
-      ansible.builtin.file:
-        src: "{{ dotfiles_dist }}/vimrc"
-        dest: "{{ user_home }}/.vimrc"
-        state: link
-        force: true
+    - name: Configure Vim.
+      ansible.builtin.import_tasks: tasks/user/vim.yml
 
-    - name: Ensure Vim autoload directory exists.
-      ansible.builtin.file:
-        path: "{{ user_home }}/.vim/autoload"
-        state: directory
-        mode: "0755"
+    - name: Configure terminal tools.
+      ansible.builtin.import_tasks: tasks/user/terminal.yml
 
-    - name: Install vim-plug.
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ user_home }}/.vim/autoload/plug.vim"
-        mode: "0644"
+    - name: Configure Git.
+      ansible.builtin.import_tasks: tasks/user/git.yml
 
-    - name: Vim CoC settings.
-      ansible.builtin.file:
-        src: "{{ dotfiles_dist }}/vim/coc-settings.json"
-        dest: "{{ user_home }}/.vim/coc-settings.json"
-        state: link
-        force: true
+    - name: Configure Bash.
+      ansible.builtin.import_tasks: tasks/user/bash.yml
 
-    - name: Vim after plugin highlights.
-      ansible.builtin.file:
-        src: "{{ dotfiles_dist }}/vim/final.vim"
-        dest: "{{ user_home }}/.vim/final.vim"
-        state: link
-        force: true
-
-    - name: Link screenrc.
-      ansible.builtin.file:
-        src: "{{ dotfiles_dist }}/screenrc"
-        dest: "{{ user_home }}/.screenrc"
-        state: link
-        force: true
-
-    - name: Link tigrc.
-      ansible.builtin.file:
-        src: "{{ dotfiles_dist }}/tigrc"
-        dest: "{{ user_home }}/.tigrc"
-        state: link
-        force: true
-
-    - name: Git ignore.
-      ansible.builtin.copy:
-        src: "{{ dotfiles_dist }}/config/git/ignore"
-        dest: "{{ user_home }}/.config/git/ignore"
-        force: true
-
-    - name: Source custom Bash configuration.
-      ansible.builtin.blockinfile:
-        path: "{{ user_home }}/.bash_aliases"
-        create: true
-        marker: "# {mark} DAMO BASHRC"
-        block: |
-          DAMO_BASHRC={{ dotfiles_dist }}/bashrc
-          if [ -f "$DAMO_BASHRC" ]; then
-              source "$DAMO_BASHRC"
-          fi
-        mode: "0644"
-
-    - name: Ensure SSH directory exists.
-      ansible.builtin.file:
-        path: "{{ user_home }}/.ssh"
-        state: directory
-        mode: "0700"
-
-    - name: Include custom SSH configuration.
-      ansible.builtin.lineinfile:
-        path: "{{ user_home }}/.ssh/config"
-        create: true
-        line: "Include {{ dotfiles_dist }}/ssh_config"
-        mode: "0600"
-
-    - name: Ensure SSH control-master directory exists.
-      ansible.builtin.file:
-        path: "{{ user_home }}/.ssh/_ctrlmasters"
-        state: directory
-        mode: "0700"
+    - name: Configure SSH.
+      ansible.builtin.import_tasks: tasks/user/ssh.yml
 
 #    - name: Configure GNOME preferences.
 #      ansible.builtin.include_tasks: tasks/gnome.yml
 
 
-    - name: Ensure npm global directory exists.
-      ansible.builtin.file:
-        path: "{{ user_home }}/.npm-global"
-        state: directory
-        mode: "0755"
+    - name: Configure npm.
+      ansible.builtin.import_tasks: tasks/user/npm.yml
 
-    - name: Ensure GPG directory exists
-      ansible.builtin.file:
-        path: "{{ user_home }}/.gnupg"
-        state: directory
-        owner: "{{ ansible_facts['user_id'] }}"
-        group: "{{ ansible_facts['user_id'] }}"
-        mode: '0700'
-      notify: Restart gpg-agent
+    - name: Configure GPG.
+      ansible.builtin.import_tasks: tasks/user/gpg.yml
 
   handlers:
     - name: Restart gpg-agent
       ansible.builtin.command:
         cmd: gpgconf --kill gpg-agent
-
-        

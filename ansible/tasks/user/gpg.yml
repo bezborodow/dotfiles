@@ -1,0 +1,9 @@
+---
+- name: Ensure GPG directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.gnupg"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  notify: Restart gpg-agent
