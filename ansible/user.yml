@@ -19,6 +19,9 @@
     - name: Configure Git.
       ansible.builtin.import_tasks: tasks/user/git.yml
 
+    - name: Configure Codex.
+      ansible.builtin.import_tasks: tasks/user/codex.yml
+
     - name: Configure Bash.
       ansible.builtin.import_tasks: tasks/user/bash.yml
 

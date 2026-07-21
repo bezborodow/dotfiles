@@ -1,0 +1,14 @@
+---
+- name: Ensure Codex configuration directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.codex"
+    state: directory
+    mode: "0755"
+
+- name: Configure global Codex instructions.
+  ansible.builtin.blockinfile:
+    path: "{{ user_home }}/.codex/AGENTS.md"
+    create: true
+    marker: "<!-- {mark} ANSIBLE MANAGED PERSONAL PREFERENCES -->"
+    mode: "0644"
+    block: "{{ lookup('ansible.builtin.file', dotfiles_dist + '/codex/AGENTS.md') }}"
