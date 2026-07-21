@@ -10,3 +10,4 @@
     src: "{{ dotfiles_dist }}/config/git/ignore"
     dest: "{{ user_home }}/.config/git/ignore"
     force: true
+    mode: "0644"
