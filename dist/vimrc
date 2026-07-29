@@ -42,7 +42,7 @@ let g:vimtex_include_search_enabled = 0
 
 let g:user_emmet_expandabbr_key = '<c-e>'
 
-nmap <C-P> :FZF<CR>
+nmap <C-P> :GFiles --cached --others --exclude-standard<CR>
 
 " Requires silversearcher-ag, to gitignore.
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
