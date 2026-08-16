@@ -22,6 +22,7 @@ graphviz
 hx
 imagemagick
 iwyu
+jq
 lcov
 libboost-all-dev
 libc++-dev
