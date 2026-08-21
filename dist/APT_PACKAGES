@@ -1,6 +1,7 @@
 ansible-lint
 aria2
 build-essential
+cargo
 clang
 clang-format
 clang-tidy
@@ -43,6 +44,7 @@ python3-psutil
 python3-venv
 qtbase5-dev
 ripgrep
+rustc
 screen
 silversearcher-ag
 sqlite3
