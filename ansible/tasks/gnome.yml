@@ -17,6 +17,9 @@
       value: "[]"
     - key: /org/gnome/desktop/wm/keybindings/switch-applications-backward
       value: "[]"
+    # Windows-style Show Desktop: hide all windows, then restore on toggle.
+    - key: /org/gnome/desktop/wm/keybindings/show-desktop
+      value: "['<Super>d']"
     # GNOME's screenshot action saves directly; show-screenshot-ui opens the picker.
     - key: /org/gnome/shell/keybindings/screenshot
       value: "['<Super><Shift>s']"
