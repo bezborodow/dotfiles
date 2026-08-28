@@ -23,6 +23,7 @@ graphviz
 hx
 imagemagick
 iwyu
+just
 jq
 lcov
 libboost-all-dev
