@@ -9,7 +9,7 @@
 - If you need something that is unavailable, stop and ask for it.
 - If you need further information, ask for it. Ask questions if clarification
   is needed.
-- If asked to discuss a concept, do not implement anything until told to
+- If asked to discuss a concept, do not implement anything until directed to
   proceed.
 
 ## Security
@@ -38,8 +38,8 @@ depending on the machine.
   professional, finance, or scientific terms give a more precise meaning.
 - Use a word as one part of speech and with one meaning in a given context. Do
   not use technical nouns as verbs or technical verbs as nouns.
-- Use one consistent term for each item or concept. Avoid slang, jargon, and
-  regional words unless they are established terms in the applicable field.
+- Use one consistent term for each item or concept. Especially avoid slang and
+  jargon.
 - Keep multi-word nouns to three words or fewer when possible. Rewrite longer
   terms with prepositions, or give the full term before a clear short form.
 - Use short, direct sentences. Do not omit necessary words and do not use
