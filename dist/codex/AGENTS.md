@@ -34,8 +34,7 @@ depending on the machine.
 - Use British English spelling. This preference overrides the STE default of
   American English spelling.
 - Prefer common STE words when they give the correct meaning. An expanded
-  vocabulary is acceptable when established technical, engineering, chemical,
-  professional, finance, or scientific terms give a more precise meaning.
+  vocabulary is acceptable when the project defines such terminology.
 - Use a word as one part of speech and with one meaning in a given context. Do
   not use technical nouns as verbs or technical verbs as nouns.
 - Use one consistent term for each item or concept. Especially avoid slang and
