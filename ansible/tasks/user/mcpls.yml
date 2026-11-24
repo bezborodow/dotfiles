@@ -1,0 +1,13 @@
+---
+- name: Ensure MCPLS configuration directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.config/mcpls"
+    state: directory
+    mode: "0755"
+
+- name: Link MCPLS configuration.
+  ansible.builtin.file:
+    src: "{{ dotfiles_dist }}/config/mcpls/mcpls.toml"
+    dest: "{{ user_home }}/.config/mcpls/mcpls.toml"
+    state: link
+    force: true

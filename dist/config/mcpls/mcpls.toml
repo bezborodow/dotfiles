@@ -1,0 +1,45 @@
+# MCPLS uses its launch directory as the workspace.
+# Custom language mappings and servers replace the built-in defaults.
+[[workspace.language_extensions]]
+extensions = ["rs"]
+language_id = "rust"
+
+[[workspace.language_extensions]]
+extensions = ["c", "h"]
+language_id = "c"
+
+[[workspace.language_extensions]]
+extensions = ["cpp", "cc", "cxx", "hpp", "hh", "hxx"]
+language_id = "cpp"
+
+[[workspace.language_extensions]]
+extensions = ["py", "pyi", "pyw"]
+language_id = "python"
+
+[[workspace.language_extensions]]
+extensions = ["vhd", "vhdl"]
+language_id = "vhdl"
+
+[[lsp_servers]]
+language_id = "cpp"
+command = "clangd"
+file_patterns = ["**/*.c", "**/*.h", "**/*.cpp", "**/*.cc", "**/*.cxx", "**/*.hpp", "**/*.hh", "**/*.hxx"]
+
+[[lsp_servers]]
+language_id = "python"
+command = "pyright-langserver"
+args = ["--stdio"]
+file_patterns = ["**/*.py", "**/*.pyi", "**/*.pyw"]
+
+[[lsp_servers]]
+language_id = "vhdl"
+command = "vhdl_ls"
+file_patterns = ["**/*.vhd", "**/*.vhdl"]
+
+[[lsp_servers]]
+language_id = "rust"
+command = "rust-analyzer"
+file_patterns = ["**/*.rs"]
+
+[lsp_servers.heuristics]
+project_markers = ["Cargo.toml", "rust-toolchain.toml"]

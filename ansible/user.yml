@@ -22,6 +22,11 @@
     - name: Configure Codex.
       ansible.builtin.import_tasks: tasks/user/codex.yml
 
+    - name: Configure MCPLS.
+      ansible.builtin.import_tasks: tasks/user/mcpls.yml
+      tags:
+        - mcpls
+
     - name: Configure Bash.
       ansible.builtin.import_tasks: tasks/user/bash.yml
 
