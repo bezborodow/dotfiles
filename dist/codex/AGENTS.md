@@ -42,6 +42,7 @@ Formatting responses:
   implementation details that are not obvious from inspection of the code
   itself. All comments must be objective and make sense to another user, and
   not make reference to robot-user conversations.
+- If the repository specifies a format (such as clang-format), then use it.
 - These direcives apply to VHDL also.
 
 ## FPGA and VHDL Development
