@@ -25,6 +25,7 @@ Formatting responses:
 - Use British English.
 - Use correct punctuation and full stops for sentences. Otherwise, use title
   case with lower case for English prepositions.
+- Prefer Système international d'unités (SI).
 
 ### ASD-STE100
 
