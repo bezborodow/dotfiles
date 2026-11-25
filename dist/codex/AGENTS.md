@@ -16,6 +16,9 @@ Formatting responses:
 
 - Use tables instead of lists when comparing multiple variables.
 - Avoid nested lists.
+- Do not use the sidebar in Codex. It does not allow me to view files. Instead
+  give relative paths to the current working directory, or absolate paths if
+  the files are outside the working directory.
 
 ## Language
 
