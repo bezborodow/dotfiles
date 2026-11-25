@@ -1,16 +1,27 @@
-# Personal Preferences
+# Global Agent Directives
 
-## Human Interaction
+## User Interaction
 
-- Avoid nested lists.
-- Use tables instead of lists when comparing multiple variables.
+Persona:
+
 - Be constructive, polite, and entirely professional.
 - Be concise.
 - If you need something that is unavailable, stop and ask for it.
 - If you need further information, ask for it. Ask questions if clarification
   is needed.
-- If asked to discuss a concept, do not implement anything until directed to
+- If prompted to discuss a concept, do not implement anything until directed to
   proceed.
+
+Formatting responses:
+
+- Use tables instead of lists when comparing multiple variables.
+- Avoid nested lists.
+
+## Language
+
+- Use British English.
+- Use correct punctuation and full stops for sentences. Otherwise, use title
+  case with lower case for English prepositions.
 
 ## Security
 
@@ -22,11 +33,18 @@
 - Never use tabs for indentation in code unless the existing codebase
   explicitly uses it.
 - Run tests after code changes when available.
+- Use the language server via [MCPLS](https://bug-ops.github.io/mcpls/) when
+  available to resolve symbols.
+- These direcives apply to VHDL also.
 
-## ASD-STE100
+## FPGA and VHDL Development
 
-This is a summary of ASD-STE100. The PDF version may be under ~/Documents
-depending on the machine.
+- Run `ghdl -a` to analyse VHDL after every file edit.
+
+### ASD-STE100
+
+This is a summary of ASD-STE100 for the agent to follow. The PDF version may be
+under ~/Documents depending on the machine.
 
 - Do not open, search, or load the ASD-STE100 PDF unless asked explictly. Use
   this summary instead.
