@@ -12,6 +12,7 @@ Use MCPLS to resolve definitions, references, callers, and diagnostics when the 
 - Call `get_tool_support` before using MCPLS with a new language. Support means a request can reach a server. It does not establish index coverage.
 - Identify the exact file and identifier. Prefer a one-based line and character on that identifier. Use `symbol_name` only when the symbol is defined in the supplied file. If a name query fails, locate the symbol in its defining file or query a verified source position.
 - Check `resolved_symbol` on name queries. Check returned locations and `truncated` on navigation results. If `positions_degraded` is `request`, do not trust the symbol match. If it is `response`, verify returned character positions in source.
+- Treat a rename result as proposed edits. Check that it covers the declaration and expected references, inspect the diff for unintended changes, and run the relevant language checks after applying it.
 
 ## Assess Incomplete Results
 
