@@ -12,3 +12,39 @@
     marker: "<!-- {mark} ANSIBLE MANAGED PERSONAL PREFERENCES -->"
     mode: "0644"
     block: "{{ lookup('ansible.builtin.file', dotfiles_dist + '/codex/AGENTS.md') }}"
+
+- name: Ensure Codex skills directory exists.
+  ansible.builtin.file:
+    path: "{{ user_home }}/.codex/skills"
+    state: directory
+  tags:
+    - mcpls
+
+- name: Inspect existing MCPLS skill.
+  ansible.builtin.stat:
+    path: "{{ user_home }}/.codex/skills/mcpls"
+    follow: false
+  register: codex_mcpls_skill
+  tags:
+    - mcpls
+
+# Preserve a skill with the same name when it belongs to another source.
+- name: Verify MCPLS skill destination.
+  ansible.builtin.assert:
+    that:
+      - >-
+        not codex_mcpls_skill.stat.exists or
+        (codex_mcpls_skill.stat.islnk | default(false) and
+        (codex_mcpls_skill.stat.lnk_source | default('') | realpath) ==
+        ((dotfiles_dist + '/codex/skills/mcpls') | realpath))
+    fail_msg: "{{ user_home }}/.codex/skills/mcpls exists and belongs to another source."
+  tags:
+    - mcpls
+
+- name: Link MCPLS skill.
+  ansible.builtin.file:
+    src: "{{ dotfiles_dist }}/codex/skills/mcpls"
+    dest: "{{ user_home }}/.codex/skills/mcpls"
+    state: link
+  tags:
+    - mcpls
