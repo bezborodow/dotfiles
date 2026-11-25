@@ -1,6 +1,6 @@
 # Global Agent Directives
 
-## User Interaction
+## Robot-User Interaction
 
 Persona:
 
@@ -38,6 +38,10 @@ Formatting responses:
 - Run tests after code changes when available.
 - Use the language server via [MCPLS](https://bug-ops.github.io/mcpls/) when
   available to resolve symbols.
+- Include comments in code. They should explain the intent of the code and any
+  implementation details that are not obvious from inspection of the code
+  itself. All comments must be objective and make sense to another user, and
+  not make reference to robot-user conversations.
 - These direcives apply to VHDL also.
 
 ## FPGA and VHDL Development
