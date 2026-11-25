@@ -43,6 +43,13 @@ preferences, then do only:
 ./install -u
 ```
 
+The installer installs the Ansible Galaxy role when it is missing. To update
+the role before running the playbooks, use:
+
+```
+./install -U
+```
+
 ## Customisation
 
 This is a very simple setup, but a basic understanding of Ansible will be

@@ -21,19 +21,22 @@ banner()
 RUN_SYSTEM=0
 RUN_USER=0
 RUN_GNOME=0
+UPGRADE_GALAXY=0
 
 # Check options.
-while getopts "sugh" opt; do
+while getopts "sugUh" opt; do
   case "$opt" in
     s) RUN_SYSTEM=1 ;;
     u) RUN_USER=1 ;;
     g) RUN_GNOME=1 ;;
+    U) UPGRADE_GALAXY=1 ;;
     h)
-      echo "Usage: $0 [-s] [-u] [-g]"
+      echo "Usage: $0 [-s] [-u] [-g] [-U]"
       echo "  no args  -> system + user"
       echo "  -s       -> system only"
       echo "  -u       -> user only"
       echo "  -g       -> include opt-in GNOME tasks"
+      echo "  -U       -> update the Ansible Galaxy role"
       echo "  -h       -> help"
       exit 0
       ;;
@@ -49,7 +52,12 @@ if [ "$RUN_SYSTEM" -eq 0 ] && [ "$RUN_USER" -eq 0 ]; then
     RUN_USER=1
 fi
 
-ansible-galaxy role install geerlingguy.nodejs -p ansible/roles/
+# Install a missing role, or refresh it when requested.
+if [ "$UPGRADE_GALAXY" -eq 1 ]; then
+    ansible-galaxy role install geerlingguy.nodejs -p ansible/roles/ --force
+elif [ ! -f ansible/roles/geerlingguy.nodejs/meta/.galaxy_install_info ]; then
+    ansible-galaxy role install geerlingguy.nodejs -p ansible/roles/
+fi
 
 PLAYBOOK_ARGS=()
 if [ "$RUN_GNOME" -eq 1 ]; then
