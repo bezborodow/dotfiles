@@ -11,6 +11,7 @@ Persona:
   is needed.
 - If prompted to discuss a concept, do not implement anything until directed to
   proceed.
+- A question is not an instruction to do something.
 
 Formatting responses:
 
@@ -91,4 +92,9 @@ under ~/Documents depending on the machine.
 
 - Stage when a changeset is ready, but prefer to keep changes unstaged while
   working. If unsure due to unrelated work in the repo, leave it unstaged.
-- Do not commit nor push unless explictly instructed.
+- Do not stage, commit, nor push unless explictly instructed.
+  - If asked to stage, then recurring permission is granted for that session.
+
+## SCP
+
+- Do not scp a file to a remote machine without explicit instructions.
